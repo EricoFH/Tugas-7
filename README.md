@@ -1,16 +1,7 @@
 # Millena Car Rental (Fase 1, 2 & Tugas Individu 7 – Forms)
 
-Aplikasi Flask rental mobil. Fase 1 & 2 (routing + cek username) dipertahankan,
-ditambah **form dengan Flask-WTF** sesuai Pertemuan 12.
-
-## Cara Menjalankan
-```bash
-python -m venv venv
-venv\Scripts\activate          # Windows  (Mac/Linux: source venv/bin/activate)
-pip install -r requirements.txt
-python app.py
-```
-Buka http://127.0.0.1:5000
+Aplikasi Flask rental mobil. Tugas Individu 5 Fase 1 & 2 (routing + cek username)
+ditambah **form dengan Flask-WTF**. 
 
 ## Route
 | Route | Keterangan |
@@ -43,9 +34,19 @@ forms.py          class form Flask-WTF
 templates/        base.html, _macros.html, kontak.html, daftar.html, admin_produk*.html, ...
 ```
 
-## Production
-Set `SECRET_KEY` lewat environment variable:
-```bash
-set SECRET_KEY=isi-kunci-acak-panjang        # Windows
-export SECRET_KEY=isi-kunci-acak-panjang     # Mac/Linux
-```
+## Cara Menjalankan
+
+1. Pastikan Python sudah terpasang.
+2. Pasang Flask:
+
+   ```
+   pip install flask
+   ```
+
+3. Jalankan aplikasi dari folder yang berisi `app.py`:
+
+   ```
+   python app.py
+   ```
+
+4. Buka `http://127.0.0.1:5000` di browser.
