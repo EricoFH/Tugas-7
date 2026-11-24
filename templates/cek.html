@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Cek Username{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <h1 class="h4">Cek Ketersediaan Username</h1>
+    {# Form pencarian memakai GET (bukan POST), jadi tidak butuh token CSRF #}
+    <form action="{{ url_for('cek_form') }}" method="GET" class="input-group mb-2">
+      <input class="form-control" name="username" value="{{ username or '' }}" placeholder="contoh: member_dewi">
+      <button class="btn btn-danger">Cek</button>
+    </form>
+    <div class="form-text mb-3">Aturan: {{ aturan }}</div>
+
+    {% if username %}
+      {% set warna = {'tersedia': 'success', 'terdaftar': 'warning'}.get(status, 'danger') %}
+      <div class="alert alert-{{ warna }}">
+        <strong>{{ username }}</strong> — {{ pesan }}
+      </div>
+      {% if status == 'tersedia' %}
+        <a class="btn btn-danger" href="{{ url_for('daftar', username=username) }}">Daftar dengan username ini</a>
+      {% elif status == 'terdaftar' %}
+        <a class="btn btn-outline-danger" href="{{ url_for('user_profile', username=username) }}">Lihat profil</a>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

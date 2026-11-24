@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Tidak ditemukan{% endblock %}
+{% block content %}
+<div class="text-center py-5">
+  <h1 class="display-4">404</h1>
+  <p class="lead">Halaman yang Anda cari tidak ditemukan.</p>
+  <a class="btn btn-danger" href="{{ url_for('beranda') }}">Kembali ke beranda</a>
+</div>
+{% endblock %}

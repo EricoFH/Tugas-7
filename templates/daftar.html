@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field %}
+{% block title %}Daftar Akun{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h1 class="h4">Daftar Akun Pelanggan</h1>
+        <form method="POST" novalidate>
+          {{ form.hidden_tag() }}
+
+          {{ field(form.nama, placeholder="Nama lengkap") }}
+          {{ field(form.username, help="Aturan: " ~ aturan, placeholder="contoh: budi_2026") }}
+          {{ field(form.email, type="email", placeholder="nama@email.com") }}
+          {{ field(form.umur, type="number", placeholder="17 - 99") }}
+          {{ field(form.password, placeholder="Minimal 8 karakter") }}
+          {{ field(form.konfirmasi) }}
+
+          {{ form.submit(class="btn btn-danger") }}
+          <a class="btn btn-link" href="{{ url_for('cek_form') }}">Cek username dulu</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

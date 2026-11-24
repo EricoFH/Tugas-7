@@ -1,0 +1,35 @@
+{# Render satu field Flask-WTF dengan gaya Bootstrap.
+   - class is-invalid otomatis jika ada error
+   - pesan error tampil di bawah field
+   - nilai yang sudah diketik tetap terisi (WTForms mengisi ulang otomatis) #}
+{% macro field(f, help=None) %}
+  <div class="mb-3">
+    {{ f.label(class="form-label") }}
+    {% set dasar = 'form-select' if f.type == 'SelectField' else 'form-control' %}
+    {{ f(class=dasar ~ (' is-invalid' if f.errors else ''), **kwargs) }}
+    {% for e in f.errors %}
+      <div class="invalid-feedback">{{ e }}</div>
+    {% endfor %}
+    {% if help %}<div class="form-text">{{ help }}</div>{% endif %}
+  </div>
+{% endmacro %}
+
+{# Kartu mobil (dipakai di beranda & halaman armada) #}
+{% macro kartu_mobil(m) %}
+  <div class="card h-100 shadow-sm">
+    {% if m.foto %}
+      <img src="{{ m.foto | foto(600) }}" class="card-img-top" alt="{{ m.nama }}" style="height:180px;object-fit:cover">
+    {% else %}
+      <div class="bg-secondary-subtle d-flex align-items-center justify-content-center text-muted" style="height:180px">Foto belum tersedia</div>
+    {% endif %}
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title">{{ m.nama }}</h5>
+      <p class="text-muted small mb-1">{{ m.kelas }} · {{ m.kursi }} kursi · {{ m.transmisi }}</p>
+      <p class="card-text small flex-grow-1">{{ m.catatan }}</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <strong class="text-danger">{{ m.harga | rupiah }}<small class="text-muted fw-normal">/hari</small></strong>
+        <a href="{{ url_for('produk_detail', id=m.id) }}" class="btn btn-sm btn-outline-danger">Detail</a>
+      </div>
+    </div>
+  </div>
+{% endmacro %}

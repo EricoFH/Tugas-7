@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% from "_macros.html" import kartu_mobil %}
+{% block title %}Armada{% endblock %}
+{% block content %}
+<h1 class="h3 mb-3">Armada Kami</h1>
+<div class="row g-3">
+  {% for m in daftar %}
+    <div class="col-md-6 col-lg-4">{{ kartu_mobil(m) }}</div>
+  {% endfor %}
+</div>
+{% endblock %}

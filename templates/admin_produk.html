@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · Armada{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">Dashboard Admin · Armada</h1>
+  <a class="btn btn-danger" href="{{ url_for('admin_produk_tambah') }}">+ Tambah Mobil</a>
+</div>
+
+<div class="card shadow-sm">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="table-light">
+        <tr><th>#</th><th>Nama</th><th>Kategori</th><th>Kursi</th><th>Transmisi</th><th class="text-end">Harga/hari</th><th class="text-center">Stok</th></tr>
+      </thead>
+      <tbody>
+        {% for m in daftar %}
+        <tr>
+          <td>{{ m.id }}</td>
+          <td><a href="{{ url_for('produk_detail', id=m.id) }}" class="text-decoration-none">{{ m.nama }}</a></td>
+          <td><span class="badge text-bg-secondary">{{ m.kelas }}</span></td>
+          <td>{{ m.kursi }}</td>
+          <td>{{ m.transmisi }}</td>
+          <td class="text-end">{{ m.harga | rupiah }}</td>
+          <td class="text-center">{{ m.stok }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<p class="text-muted small mt-2">Total {{ daftar | length }} mobil.</p>
+{% endblock %}

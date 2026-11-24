@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field %}
+{% block title %}Kontak{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h1 class="h4">Hubungi Kami / Pesan Mobil</h1>
+        <p class="text-muted">Isi formulir berikut, tim kami akan menghubungi Anda.</p>
+
+        {# novalidate: biarkan validasi server-side (Flask-WTF) yang bekerja #}
+        <form method="POST" novalidate>
+          {{ form.hidden_tag() }} {# token CSRF #}
+
+          {{ field(form.nama, placeholder="Nama Anda") }}
+          {{ field(form.email, placeholder="nama@email.com", type="email") }}
+          {{ field(form.telepon, placeholder="081234567890") }}
+          {{ field(form.mobil) }}
+          {{ field(form.pesan, rows=4, placeholder="Tanggal sewa, durasi, tujuan, dll.") }}
+
+          {{ form.submit(class="btn btn-danger") }}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

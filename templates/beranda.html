@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% from "_macros.html" import kartu_mobil %}
+{% block title %}Beranda{% endblock %}
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+  <div class="row align-items-center">
+    <div class="col-lg-6">
+      <h1 class="display-6 fw-bold">Sewa mobil mudah di Surabaya</h1>
+      <p class="lead">Pilih armada, hubungi kami, dan daftar akun dalam hitungan menit.</p>
+      <a class="btn btn-danger me-2" href="{{ url_for('produk') }}">Lihat Armada</a>
+      <a class="btn btn-outline-danger" href="{{ url_for('kontak') }}">Hubungi Kami</a>
+    </div>
+    <div class="col-lg-6 mt-4 mt-lg-0">
+      {% if hero.foto %}
+        <img src="{{ hero.foto | foto(800) }}" class="img-fluid rounded" alt="{{ hero.nama }}">
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<h2 class="h4 mb-3">Armada Unggulan</h2>
+<div class="row g-3 mb-4">
+  {% for m in unggulan %}
+    <div class="col-md-4">{{ kartu_mobil(m) }}</div>
+  {% endfor %}
+</div>
+
+<div class="card card-body">
+  <h2 class="h5">Cek username sebelum mendaftar</h2>
+  <form action="{{ url_for('cek_form') }}" method="GET" class="row g-2">
+    <div class="col-sm-9">
+      <input class="form-control" name="username" placeholder="contoh: member_dewi">
+    </div>
+    <div class="col-sm-3 d-grid"><button class="btn btn-danger">Cek</button></div>
+  </form>
+  <div class="form-text">Aturan: {{ aturan }}</div>
+</div>
+{% endblock %}

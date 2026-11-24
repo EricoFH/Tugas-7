@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ m.nama }}{% endblock %}
+{% block content %}
+<a href="{{ url_for('produk') }}" class="small">&larr; Kembali ke armada</a>
+<div class="row mt-3 g-4">
+  <div class="col-md-6">
+    {% if m.foto %}
+      <img src="{{ m.foto | foto(900) }}" class="img-fluid rounded shadow-sm" alt="{{ m.nama }}">
+      <div class="form-text"><a href="{{ m.foto | halaman_foto }}" target="_blank" rel="noopener">Sumber foto &amp; lisensi</a></div>
+    {% else %}
+      <div class="bg-secondary-subtle rounded d-flex align-items-center justify-content-center text-muted" style="height:260px">Foto belum tersedia</div>
+    {% endif %}
+  </div>
+  <div class="col-md-6">
+    <h1 class="h3">{{ m.nama }}</h1>
+    <p>{{ m.catatan }}</p>
+    <table class="table table-sm w-auto">
+      <tr><th>Kelas</th><td>{{ m.kelas }}</td></tr>
+      <tr><th>Kursi</th><td>{{ m.kursi }}</td></tr>
+      <tr><th>Transmisi</th><td>{{ m.transmisi }}</td></tr>
+      <tr><th>Stok</th><td>{{ m.stok }} unit</td></tr>
+      <tr><th>Harga</th><td class="text-danger fw-bold">{{ m.harga | rupiah }} / hari</td></tr>
+    </table>
+    <a class="btn btn-danger" href="{{ url_for('kontak') }}">Tanya / Pesan</a>
+  </div>
+</div>
+{% endblock %}

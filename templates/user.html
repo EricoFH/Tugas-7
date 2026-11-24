@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ u.nama }}{% endblock %}
+{% block content %}
+<div class="card shadow-sm" style="max-width:480px">
+  <div class="card-body">
+    <h1 class="h4">{{ u.nama }}</h1>
+    <p class="text-muted">@{{ username }}</p>
+    <ul class="list-unstyled mb-0">
+      <li><strong>Peran:</strong> {{ u.peran }}</li>
+      <li><strong>Bergabung:</strong> {{ u.bergabung }}</li>
+      {% if u.sewa is defined %}<li><strong>Total sewa:</strong> {{ u.sewa }} kali</li>{% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

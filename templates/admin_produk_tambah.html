@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field %}
+{% block title %}Tambah Mobil{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h1 class="h4">Tambah Mobil Baru</h1>
+        <form method="POST" novalidate>
+          {{ form.hidden_tag() }}
+
+          {{ field(form.nama, placeholder="contoh: Daihatsu Xenia") }}
+          <div class="row">
+            <div class="col-md-6">{{ field(form.kelas) }}</div>
+            <div class="col-md-6">{{ field(form.transmisi) }}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">{{ field(form.kursi, type="number") }}</div>
+            <div class="col-md-4">{{ field(form.harga, type="number") }}</div>
+            <div class="col-md-4">{{ field(form.stok, type="number") }}</div>
+          </div>
+          {{ field(form.catatan, rows=3, placeholder="Deskripsi singkat (maks. 200 karakter)") }}
+
+          {{ form.submit(class="btn btn-danger") }}
+          <a class="btn btn-link" href="{{ url_for('admin_produk') }}">Batal</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
