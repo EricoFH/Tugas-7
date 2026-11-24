@@ -2,7 +2,7 @@
 {% block title %}Cek Username{% endblock %}
 {% block content %}
 <div class="row justify-content-center">
-  <div class="col-lg-6">
+  <div class="col-md-10">
     <h1 class="h4">Cek Ketersediaan Username</h1>
     {# Form pencarian memakai GET (bukan POST), jadi tidak butuh token CSRF #}
     <form action="{{ url_for('cek_form') }}" method="GET" class="input-group mb-2">
